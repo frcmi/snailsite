@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    <div class="page-layout">
+      {% include header.html
+         logo="logo.png" %}
+      {% include scripts.html %}
+      <div style="margin-top: 65px;">
+        {{ content }}
+      </div>
+      {% include footer.html %}
+    </div>
+  </body>
+</html>

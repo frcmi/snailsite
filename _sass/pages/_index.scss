@@ -1,0 +1,235 @@
+.index-header {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/images/picture/group_photo.jpeg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 100px 0 120px 0;
+  
+
+  .index-header-section {
+    width: 70%;
+    margin: auto;
+    display: block;
+    color: $index-header-fnt-color;
+    vertical-align: top;
+    text-align: center;
+    font-family: Verdana;
+    color: white;
+    line-height: 1.4;
+    
+
+    .index-header-section-h1 {
+      font-size: 50px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .index-header-section-h1-sub {
+      font-size: 19px;
+      margin-bottom: 50px;
+    }
+
+    .index-header-section-button {
+      background-color: #5A0301;
+      border: white 1px solid;
+      color: white;
+      padding: 15px 50px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: Verdana;
+      font-weight: bold;
+      margin-right: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #420201;
+      }
+
+      &:focus {
+        outline: none;
+      }
+  }
+  }
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.programming-practice-column {
+  padding: 20px 0;
+  float: left;
+  text-align: center;
+  width: 33%;
+  border-top: 1px solid #F0F0F0;
+}
+
+.problem-header {
+  margin: auto;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Verdana';
+  font-weight: bold;
+}
+
+.problem-item {
+  padding: 10px 0;
+  @include box-shadow(0, 2px, 3px, 0, rgba(0, 0, 0, 0.15));
+  margin: auto;
+  width: 70%;
+  background-color: #f8f8fa;
+  margin-top:20px;
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: #eeeeee;
+    @include box-shadow(0, 3px, 5px, 0, rgba(0, 0, 0, 0.15));
+  }
+
+  > a {
+    padding: 20px 0;
+    //display: block;
+  }
+  
+
+  .problem-item-title {
+    font-size: 14px;
+    font-family: 'Verdana';
+  }
+  .problem-item-techniques {
+    margin-top:1px;
+    font-style: italic;
+    font-size: 12px;
+    font-family: 'Verdana';
+  }
+
+}
+
+.apply-widget {
+  font-family:"Verdana";
+  font-size:20px;
+  line-height: 1.4;
+  margin-top: -10px;
+  margin-bottom: 40px;
+}
+
+.widget {
+
+  padding: 40px 0;
+
+  .widget-header {
+    font-family:"Verdana";
+    font-size:35px;
+    font-weight:bold;
+    margin-bottom:40px;
+  }
+
+  .widget-body {
+    font-family:"Georgia";
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom: 40px;
+  }
+
+  .widget-photo {
+
+    img {
+      
+      height:260px;
+      width:260px;
+    }
+    
+
+  }
+
+  // have to make columns
+
+}
+
+
+.index-competitions {
+  padding: 40px 0;
+
+  .index-competitions-section-header {
+    margin-bottom: 40px;
+  }
+
+  .index-competitions-section-list {
+    
+    .index-competitions-section-list-item {
+      // @include border-radius(6px);
+      // @include box-shadow(0, 1px, 2px, 0, rgba(0, 0, 0, 0.07));
+      width: 320px;
+      overflow: hidden;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .list-item-img {
+        background: #eee;
+        width: 320px;
+        height: 160px;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      .list-item-info {
+        padding: 20px;
+
+        .list-item-title {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          margin-bottom: 10px;
+        }
+
+        .list-item-cohost {
+          font-weight: bold;
+          color: #626262;
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+
+        .list-item-date {
+          color: #777;
+          font-size: 16px;
+          margin-bottom: 3px;
+        }
+
+        .list-item-location {
+          color: #777;
+          font-size: 16px;
+          margin-bottom: 3px;
+        }
+
+        .list-item-size {
+          color: #777;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.link{
+  color:#830301;
+  &:hover {
+    color: #5A0301;
+  }
+}

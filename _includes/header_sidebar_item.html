@@ -1,0 +1,25 @@
+<a class="header-a" id="header{{ include.id }}">
+  <div class="header-sidebar-item">
+    {{ include.header }}
+  </div>
+</a>
+
+<script>
+  $("#header{{ include.id }}").click(function() {
+    $('html,body').animate({
+      scrollTop: $("#{{ include.id }}").offset().top - 60},
+    'slow');
+  });
+
+  $(window).on('scroll', function() {
+    $('.header-a').each(function() {
+      var id = $(this).attr('id');
+      if($(window).scrollTop() >= $("#" + id.substring(6)).position().top - 150) {
+        $('.header-a').removeClass('active');
+        $("#" + id).addClass('active');
+      }
+    });
+  });
+</script>
+
+
