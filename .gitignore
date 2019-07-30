@@ -6,3 +6,6 @@ _site/
 # Ignore bundler files
 /vendor/
 /.bundle/
+
+# Mac users
+.DS_Store
