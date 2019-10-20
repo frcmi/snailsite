@@ -1,0 +1,96 @@
+#!/usr/local/bin/python3
+# -*- coding: ascii -*-
+
+import sys
+import subprocess
+import time
+import argparse
+import json
+
+def main():
+	parser = argparse.ArgumentParser(description="Create new Jekyll pages and publish to GitHub")
+	subparsers = parser.add_subparsers(dest="action")
+	subparsers.required = True
+
+	new_blog_cmd = subparsers.add_parser("newblog", aliases=["nb"], help="Create a new blog post")
+	new_blog_cmd.add_argument("title")
+	new_blog_cmd.add_argument("--author", "-a", default="")
+	new_blog_cmd.add_argument("--desc", "-d", default="A blog post")
+	new_blog_cmd.add_argument("--img", "-i", default="/assets/blog_images/our_new_blog.jpg")
+	new_blog_cmd.set_defaults(func=new_blog_post)
+
+	load_post_cmd = subparsers.add_parser("loadblog", aliases=["lb"], help="""
+		Create a new blog post from path to json file.
+		Correct format:
+		{
+		  'title':'',
+		  'author':''
+		  'desc':'',
+		  'img':'',
+		  'content':[
+		    '',
+		    '',
+		    ''
+		  ]
+		}""")
+	load_post_cmd.add_argument("jsonpath")
+	load_post_cmd.set_defaults(func=load_blog_post)
+
+	args = parser.parse_args()
+	args.func(args)
+
+def write_file(name, **kwargs):
+	f = open("%s" % name, 'w')
+	f.write("---\n")
+	for k, v in kwargs.items():
+		f.write("%s: %s\n" % (k, v))
+	f.write("---\n")
+	f.close()
+
+def write_blog_post(args):
+	lines = []
+	lines.append("- title: " + args['blog_title'])
+	lines.append("  img: " + args['blog_img'])
+	lines.append("  date: " + time.strftime("%Y-%m-%d"))
+	lines.append("  link: " + args['permalink'])
+	lines.append("  description: " + args['blog_desc'])
+	
+	for line in lines:
+		subprocess.call("echo '" + line + "' >> _data/blog_posts.yml", shell=True);
+
+def new_blog_post(args):
+	datestr = time.strftime("%Y-%m-%d")
+	filename = "_posts/blog/" + datestr + "-" + args["title"].replace(" ", "-").lower() + ".md"
+	
+	file_args = {
+		'layout': 'post-blog',
+		'blog_title': args["title"],
+		'permalink': "/blog/" + args["title"].replace(' ', '-').lower(),
+		'blog_desc': args["desc"],
+		'blog_img': args["img"],
+		'blog_date': time.strftime("%Y-%m-%d %H:%M:%S %z"),
+		'author': args["author"]
+	}
+	
+	write_file(filename, **file_args)
+	write_blog_post(file_args)
+
+def load_blog_post(args):
+	data = {}
+	try:
+		with open(args.jsonpath, "r") as read_file:
+			data = json.load(read_file)
+	except Exception as E:
+		print("Invalid json file")
+		print(E)
+		return
+
+	new_blog_post(data)
+
+	filename = "_posts/blog/" + time.strftime("%Y-%m-%d") + "-" + data["title"].replace(" ", "-").lower() + ".md"
+
+	for line in data["content"]:
+		subprocess.call("echo '" + line + "' >> " + filename, shell=True)
+
+if __name__ == "__main__":
+	main()
